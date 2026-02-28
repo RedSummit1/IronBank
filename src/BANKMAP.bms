@@ -1,0 +1,83 @@
+nano src/BANKMAP.bms
+```
+
+Paste this in:
+```
+BANKMAP  DFHMSD TYPE=&SYSPARM,                                         X
+               LANG=COBOL,                                             X
+               MODE=INOUT,                                             X
+               TERM=3270-2,                                            X
+               CTRL=FREEKB,                                            X
+               STORAGE=AUTO,                                           X
+               TIOAPFX=YES
+*
+BANKMENU DFHMDI SIZE=(24,80),                                          X
+               LINE=1,                                                 X
+               COLUMN=1
+*
+* TITLE
+         DFHMDF POS=(1,20),                                            X
+               LENGTH=40,                                              X
+               ATTRB=(NORM,PROT),                                      X
+               INITIAL='IRON BANK OF BRAAVOS - MAIN MENU'
+*
+* ACCOUNT NUMBER LABEL
+         DFHMDF POS=(5,2),                                             X
+               LENGTH=15,                                              X
+               ATTRB=(NORM,PROT),                                      X
+               INITIAL='ACCOUNT NUMBER:'
+*
+* ACCOUNT NUMBER INPUT FIELD
+ACCTN    DFHMDF POS=(5,18),                                            X
+               LENGTH=8,                                               X
+               ATTRB=(NORM,UNPROT,IC)
+*
+* BALANCE LABEL
+         DFHMDF POS=(7,2),                                             X
+               LENGTH=8,                                               X
+               ATTRB=(NORM,PROT),                                      X
+               INITIAL='BALANCE:'
+*
+* BALANCE OUTPUT FIELD
+BALOUT   DFHMDF POS=(7,18),                                            X
+               LENGTH=12,                                              X
+               ATTRB=(NORM,PROT)
+*
+* MESSAGE FIELD
+MSGOUT   DFHMDF POS=(20,2),                                            X
+               LENGTH=78,                                              X
+               ATTRB=(NORM,PROT)
+*
+* OPTION LABEL
+         DFHMDF POS=(10,2),                                            X
+               LENGTH=20,                                              X
+               ATTRB=(NORM,PROT),                                      X
+               INITIAL='1. DEPOSIT'
+*
+         DFHMDF POS=(11,2),                                            X
+               LENGTH=20,                                              X
+               ATTRB=(NORM,PROT),                                      X
+               INITIAL='2. WITHDRAW'
+*
+* OPTION INPUT
+         DFHMDF POS=(13,2),                                            X
+               LENGTH=7,                                               X
+               ATTRB=(NORM,PROT),                                      X
+               INITIAL='OPTION:'
+*
+OPTIN    DFHMDF POS=(13,10),                                           X
+               LENGTH=1,                                               X
+               ATTRB=(NORM,UNPROT,IC)
+*
+* AMOUNT LABEL
+         DFHMDF POS=(15,2),                                            X
+               LENGTH=7,                                               X
+               ATTRB=(NORM,PROT),                                      X
+               INITIAL='AMOUNT:'
+*
+* AMOUNT INPUT
+AMTIN    DFHMDF POS=(15,10),                                           X
+               LENGTH=12,                                              X
+               ATTRB=(NORM,UNPROT)
+*
+BANKMAP  DFHMSD TYPE=FINAL
